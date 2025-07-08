@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.14.36221.1 d17.14
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ETrade", "ETrade\ETrade.csproj", "{6EE87364-5FA0-4B7C-A23E-11D2E32DE8A1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CORE", "CORE\CORE.csproj", "{F8CC5C12-A9ED-46A8-AE94-225333885773}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{6EE87364-5FA0-4B7C-A23E-11D2E32DE8A1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6EE87364-5FA0-4B7C-A23E-11D2E32DE8A1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6EE87364-5FA0-4B7C-A23E-11D2E32DE8A1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6EE87364-5FA0-4B7C-A23E-11D2E32DE8A1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F8CC5C12-A9ED-46A8-AE94-225333885773}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F8CC5C12-A9ED-46A8-AE94-225333885773}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F8CC5C12-A9ED-46A8-AE94-225333885773}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F8CC5C12-A9ED-46A8-AE94-225333885773}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {A273EA68-331D-4E43-8948-6630898C4989}
+	EndGlobalSection
+EndGlobal
