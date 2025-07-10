@@ -1,6 +1,6 @@
-﻿namespace CORE.Data
+﻿namespace CORE.Entities
 {
-    public abstract class DataBase 
+    public abstract class Data 
     {
         public int Id { get; set; }
         public string Guid { get; set; }
