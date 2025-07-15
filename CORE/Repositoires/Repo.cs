@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 namespace CORE.Repositoires
 {
     // CRUD Repository Base
-    public abstract class Repo<TEntity> where TEntity : Entity, new()
+    public abstract class Repo<TEntity> : IDisposable where TEntity : Entity, new()
     {
         private readonly DbContext _db; // Dependency Injection
 
@@ -62,6 +62,12 @@ namespace CORE.Repositoires
         public virtual int Save()
         {
             return _db.SaveChanges(); // Unit of Work
+        }
+
+        public void Dispose()
+        {
+            _db.Dispose();
+            GC.SuppressFinalize(this);
         }
     }
 }
