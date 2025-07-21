@@ -1,6 +1,13 @@
+using APP.DataAccess;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+var connectionString = @"server=(localdb)\mssqllocaldb;database=YBETradeDB;trusted_connection=true;";
+// IoC Container: (Inversion of Control)
+builder.Services.AddDbContext<Db>(options => options.UseSqlServer(connectionString));
+
 builder.Services.AddControllersWithViews();
 
 var app = builder.Build();
