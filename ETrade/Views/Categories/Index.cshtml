@@ -1,0 +1,23 @@
+﻿@model List<APP.Business.Models.CategoryResponse>
+
+<h1>Categories</h1>
+<hr />
+<div class="container">
+    <table class="table">
+        <tr>
+            <th>
+                Name
+            </th>
+            <th>
+                Description
+            </th>
+        </tr>
+        @foreach (var category in Model)
+        {
+            <tr>
+                <td>@category.Name</td>
+                <td>@category.Description</td>
+            </tr>
+        }
+    </table>
+</div>
