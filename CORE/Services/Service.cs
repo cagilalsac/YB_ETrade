@@ -7,9 +7,9 @@ namespace CORE.Services
     public abstract class Service<TEntity, TRequest, TResponse> : IDisposable 
         where TEntity : Entity, new() where TRequest : Request, new() where TResponse : Response, new()
     {
-        protected readonly Repo<TEntity> _repo;
+        protected readonly RepoBase<TEntity> _repo;
 
-        protected Service(Repo<TEntity> repo)
+        protected Service(RepoBase<TEntity> repo)
         {
             _repo = repo;
         }

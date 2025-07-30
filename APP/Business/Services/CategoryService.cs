@@ -8,7 +8,7 @@ namespace APP.Business.Services
 {
     public class CategoryService : Service<Category, CategoryRequest, CategoryResponse>
     {
-        public CategoryService(Repo<Category> repo) : base(repo)
+        public CategoryService(RepoBase<Category> repo) : base(repo)
         {
         }
 
@@ -38,7 +38,20 @@ namespace APP.Business.Services
 
         public override Result<CategoryResponse> GetItem(int id)
         {
-            throw new NotImplementedException();
+            CategoryResponse item = null;
+            var entity = _repo.Query().SingleOrDefault(categoryEntity => categoryEntity.Id == id);
+            if (entity is null)
+                return Error(item, "Category not found!");
+            item = new CategoryResponse()
+            {
+                CreatedBy = entity.CreatedBy,
+                Description = entity.Description,
+                Guid = entity.Guid,
+                Id = entity.Id,
+                Name = entity.Name,
+                UpdatedBy = entity.UpdatedBy
+            };
+            return Success(item);
         }
 
         public override Result Create(CategoryRequest request)

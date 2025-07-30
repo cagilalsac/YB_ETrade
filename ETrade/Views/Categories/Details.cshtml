@@ -1,0 +1,27 @@
+﻿@model APP.Business.Models.CategoryResponse
+
+@{
+    ViewData["Title"] = "Category Details";
+}
+
+<h1>@ViewBag.Title</h1>
+<hr />
+<div class="container">
+    <p class="text-primary">
+        @ViewBag.Message
+    </p>
+    <dl>
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+    </dl>
+</div>

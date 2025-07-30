@@ -1,6 +1,7 @@
 using APP.Business.Models;
 using APP.Business.Services;
 using APP.DataAccess;
+using CORE.Repositoires;
 using CORE.Services;
 using Microsoft.EntityFrameworkCore;
 
@@ -9,9 +10,10 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 var connectionString = @"server=(localdb)\mssqllocaldb;database=YBETradeDB;trusted_connection=true;";
 // IoC Container: (Inversion of Control)
-builder.Services.AddDbContext<Db>(options => options.UseSqlServer(connectionString));
+builder.Services.AddDbContext<DbContext, Db>(options => options.UseSqlServer(connectionString));
 
-builder.Services.AddScoped<Service<Category, CategoryRequest, CategoryResponse>, CategoryService>();
+builder.Services.AddScoped(typeof(RepoBase<>), typeof(Repo<>)); // service'lerde enjekte ediliyor
+builder.Services.AddScoped<Service<Category, CategoryRequest, CategoryResponse>, CategoryService>(); // controller'larda enjekte ediliyor
 
 builder.Services.AddControllersWithViews();
 

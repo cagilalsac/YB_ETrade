@@ -1,22 +1,39 @@
-﻿@model List<APP.Business.Models.CategoryResponse>
+﻿@model IEnumerable<APP.Business.Models.CategoryResponse>
+
+@{
+    ViewData["Title"] = "Categories";
+}
 
 <h1>Categories</h1>
 <hr />
 <div class="container">
+    <p class="text-primary">
+        @ViewBag.Message
+    </p>
     <table class="table">
         <tr>
             <th>
-                Name
+                @* Way 1: *@
+                @* Category Name *@
+                @* Way 2: *@
+                @Html.DisplayNameFor(model => model.Name)
             </th>
             <th>
-                Description
+                @Html.DisplayNameFor(model => model.Description)
             </th>
+            <th></th>
         </tr>
         @foreach (var category in Model)
         {
             <tr>
-                <td>@category.Name</td>
-                <td>@category.Description</td>
+                @* Way 1: *@
+                @* <td>@category.Name</td> *@
+                @* Way 2: *@
+                <td>@Html.DisplayFor(model => category.Name)</td>
+
+                <td>@Html.DisplayFor(model => category.Description)</td>
+
+                <td><a asp-controller="Categories" asp-action="Details" asp-route-id="@category.Id">Details</a></td>
             </tr>
         }
     </table>
