@@ -21,18 +21,41 @@ namespace ETrade.Controllers
             var result = _service.GetList();
 
             // Way 1:
-            //ViewData["Message"] = result.Message;
+            //ViewData["RecordsCount"] = result.Message;
             // Way 2:
-            ViewBag.Message = result.Message;
+            ViewBag.RecordsCount = result.Message;
 
             return View(result.Data);
         }
 
+        // GET: Categories/Details/1
         public IActionResult Details(int id)
         {
             var result = _service.GetItem(id);
             ViewBag.Message = result.Message;
             return View(result.Data);
+        }
+
+        // GET: Category/Create
+        //[HttpGet]
+        public IActionResult Create()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult Create(CategoryRequest request)
+        {
+            if (!ModelState.IsValid)
+                return View(request);
+            var result = _service.Create(request);
+            if (!result.IsSuccessful)
+            {
+                ViewBag.Message = result.Message;
+                return View(request);
+            }
+            TempData["OperationMessage"] = result.Message;
+            return RedirectToAction(nameof(Index));
         }
     }
 }

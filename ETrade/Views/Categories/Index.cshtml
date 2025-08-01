@@ -7,9 +7,19 @@
 <h1>Categories</h1>
 <hr />
 <div class="container">
-    <p class="text-primary">
-        @ViewBag.Message
-    </p>
+    @if (ViewBag.RecordsCount is not null)
+    {
+        <p class="text-primary">
+            @ViewBag.RecordsCount
+        </p>
+    }
+    @if (TempData["OperationMessage"] is not null)
+    {
+        <p class= "text-primary" >
+            @TempData["OperationMessage"]
+        </p>
+    }
+    <a asp-action="Create">Create</a>
     <table class="table">
         <tr>
             <th>
