@@ -43,7 +43,7 @@ namespace ETrade.Controllers
             return View();
         }
 
-        [HttpPost]
+        [HttpPost, ValidateAntiForgeryToken]
         public IActionResult Create(CategoryRequest request)
         {
             if (!ModelState.IsValid)
@@ -52,6 +52,28 @@ namespace ETrade.Controllers
             if (!result.IsSuccessful)
             {
                 ViewBag.Message = result.Message;
+                return View(request);
+            }
+            TempData["OperationMessage"] = result.Message;
+            return RedirectToAction(nameof(Index));
+        }
+
+        public IActionResult Edit(int id)
+        {
+            var result = _service.GetItemForEdit(id);
+            ViewBag.Message = result.Message;
+            return View(result.Data);
+        }
+
+        [HttpPost, ValidateAntiForgeryToken]
+        public IActionResult Edit(CategoryRequest request)
+        {
+            if (!ModelState.IsValid)
+                return View(request);
+            var result = _service.Update(request);
+            if (!result.IsSuccessful)
+            {
+                ModelState.AddModelError("", result.Message);
                 return View(request);
             }
             TempData["OperationMessage"] = result.Message;

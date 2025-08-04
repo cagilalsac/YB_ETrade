@@ -72,9 +72,39 @@ namespace APP.Business.Services
             return Success("Category created successfully.", entity.Id);
         }
 
+        public override Result<CategoryRequest> GetItemForEdit(int id)
+        {
+            CategoryRequest request = null;
+            var entity = _repo.Query().SingleOrDefault(categoryEntity => categoryEntity.Id == id);
+            if (entity is null)
+                return Error(request, "Category not found!");
+            request = new CategoryRequest
+            {
+                Description = entity.Description,
+                Guid = entity.Guid,
+                Id = entity.Id,
+                Name = entity.Name
+            };
+            return Success(request);
+        }
+
+        // 2    A
+
+        // 1    A
+        // 2    B
+        // 3    C
+
         public override Result Update(CategoryRequest request)
         {
-            throw new NotImplementedException();
+            if (_repo.Query().Any(c => c.Id != request.Id && c.Name.ToUpper() == request.Name.ToUpper().Trim()))
+                return Error("Category with the same name exists!");
+            var entity = _repo.Query().SingleOrDefault(c => c.Id == request.Id);
+            if (entity is null)
+                return Error("Category not found!");
+            entity.Name = request.Name?.Trim();
+            entity.Description = request.Description?.Trim();
+            _repo.Update(entity);
+            return Success("Category updated successfully.");
         }
 
         public override Result Delete(int id)

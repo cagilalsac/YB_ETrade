@@ -16,6 +16,7 @@ namespace CORE.Services
 
         public abstract Result<List<TResponse>> GetList();
         public abstract Result<TResponse> GetItem(int id);
+        public abstract Result<TRequest> GetItemForEdit(int id);
         public abstract Result Create(TRequest request);
         public abstract Result Update(TRequest request);
         public abstract Result Delete(int id);
