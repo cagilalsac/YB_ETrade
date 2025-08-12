@@ -21,6 +21,6 @@ namespace APP.DataAccess
 
         public int CategoryId { get; set; }
 
-        public Category Category { get; set; }
+        public Category Category { get; set; } // navigational property
     }
 }

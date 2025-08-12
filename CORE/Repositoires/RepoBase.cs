@@ -17,7 +17,7 @@ namespace CORE.Repositoires
         {
             return _db.Set<TEntity>().OrderByDescending(entity => entity.UpdateDate)
                 .ThenByDescending(entity => entity.CreateDate)
-                .Where(entity => entity.IsDeleted ?? false == false);
+                .Where(entity => (entity.IsDeleted ?? false) == false);
         }
 
         public virtual void Create(TEntity entity, bool save = true)

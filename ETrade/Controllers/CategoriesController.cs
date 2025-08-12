@@ -79,5 +79,21 @@ namespace ETrade.Controllers
             TempData["OperationMessage"] = result.Message;
             return RedirectToAction(nameof(Index));
         }
+
+        public IActionResult Delete(int id)
+        {
+            var result = _service.GetItem(id);
+            ViewData["GetMessage"] = result.Message;
+            return View(result.Data);
+        }
+
+        // POST: /Categories/Delete/17
+        [HttpPost, ValidateAntiForgeryToken, ActionName("Delete")]
+        public IActionResult DeleteConfirmed(int id)
+        {
+            var result = _service.Delete(id);
+            TempData["OperationMessage"] = result.Message;
+            return RedirectToAction(nameof(Index));
+        }
     }
 }

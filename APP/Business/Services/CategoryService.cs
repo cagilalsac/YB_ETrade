@@ -3,6 +3,7 @@ using APP.DataAccess;
 using CORE.Models;
 using CORE.Repositoires;
 using CORE.Services;
+using Microsoft.EntityFrameworkCore;
 
 namespace APP.Business.Services
 {
@@ -109,7 +110,15 @@ namespace APP.Business.Services
 
         public override Result Delete(int id)
         {
-            throw new NotImplementedException();
+            // eager loading EF (Include)
+            // lazy loading EF
+            var entity = _repo.Query().Include(c => c.Products).SingleOrDefault(c => c.Id == id); // select * from Categories inner join Products on Categories.Id = Products.CategoryId
+            if (entity is null)
+                return Error("Category not found!");
+            if (entity.Products.Count > 0) // if (entity.Products.Any())
+                return Error("Category can't be deleted because it has relational products!");
+            _repo.Delete(entity);
+            return Success("Category deleted successfully.");
         }
     }
 }
