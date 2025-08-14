@@ -10,5 +10,11 @@ namespace APP.DataAccess
         public Db(DbContextOptions options) : base(options)
         {
         }
+
+        // ilişkiler konfigüre edilebilir
+        //protected override void OnModelCreating(ModelBuilder modelBuilder)
+        //{
+        //    base.OnModelCreating(modelBuilder);
+        //}
     }
 }

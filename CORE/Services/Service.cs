@@ -1,17 +1,35 @@
 ﻿using CORE.Entities;
 using CORE.Models;
 using CORE.Repositoires;
+using System.Globalization;
 
 namespace CORE.Services
 {
     public abstract class Service<TEntity, TRequest, TResponse> : IDisposable 
         where TEntity : Entity, new() where TRequest : Request, new() where TResponse : Response, new()
     {
+        // Encapsulation
+        private CultureInfo _cultureInfo;
+        protected CultureInfo CultureInfo // new CultureInfo("tr-TR")
+        {
+            get
+            {
+                return _cultureInfo;
+            }
+            set
+            {
+                _cultureInfo = value;
+                Thread.CurrentThread.CurrentCulture = _cultureInfo;
+                Thread.CurrentThread.CurrentUICulture = _cultureInfo;
+            }
+        }
+
         protected readonly RepoBase<TEntity> _repo;
 
         protected Service(RepoBase<TEntity> repo)
         {
             _repo = repo;
+            CultureInfo = new CultureInfo("en-US");
         }
 
         public abstract Result<List<TResponse>> GetList();

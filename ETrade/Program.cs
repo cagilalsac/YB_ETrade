@@ -14,6 +14,7 @@ builder.Services.AddDbContext<DbContext, Db>(options => options.UseSqlServer(con
 
 builder.Services.AddScoped(typeof(RepoBase<>), typeof(Repo<>)); // service'lerde enjekte ediliyor
 builder.Services.AddScoped<Service<Category, CategoryRequest, CategoryResponse>, CategoryService>(); // controller'larda enjekte ediliyor
+builder.Services.AddScoped<Service<Product, ProductRequest, ProductResponse>, ProductService>(); // controller'larda enjekte ediliyor
 
 builder.Services.AddControllersWithViews();
 
