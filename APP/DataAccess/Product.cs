@@ -1,5 +1,6 @@
 ﻿using CORE.Entities;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace APP.DataAccess
 {
@@ -22,5 +23,14 @@ namespace APP.DataAccess
         public int CategoryId { get; set; }
 
         public Category Category { get; set; } // navigational property
+
+        public List<ProductStore> ProductStores { get; set; } = new List<ProductStore>(); // navigation property
+
+        [NotMapped]
+        public List<int> StoreIds 
+        { 
+            get => ProductStores.Select(productStore => productStore.StoreId).ToList();
+            set => ProductStores = value.Select(storeId => new ProductStore { StoreId = storeId }).ToList(); 
+        }
     }
 }
